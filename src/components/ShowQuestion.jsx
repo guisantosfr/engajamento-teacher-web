@@ -121,9 +121,36 @@ export default function ShowQuestion({ onFinishQuiz }) {
                     <span style={{ color: '#FF4500' }}>Falso</span>
                   </Typography>
               ) : (
-                <Paper elevation={4} sx={{ p: 2.5, width: 150 }}
-                  onClick={() => setVisible(!visible)}>
-                </Paper>
+                <Paper
+                elevation={4}
+                sx={{
+                  p: 2.5,
+                  width: 150,
+                  height: 80,
+                  bgcolor: visible
+                    ? (quiz.questoes[currentQuestionIndex].resposta === 'V' ? 'lightblue' : 'lightcoral')
+                    : '#333',
+                  cursor: 'pointer',
+                  textAlign: 'center',
+                  borderRadius: 2,
+                  position: 'relative',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'background-color 0.3s ease',
+                }}
+                onClick={() => setVisible(!visible)}
+              >
+                {!visible && (
+                  <Visibility sx={{ fontSize: 40, color: 'white' }} />
+                )}
+                {visible && (
+                  <Typography variant="h6">
+                    {quiz.questoes[currentQuestionIndex].resposta === 'V' ? 'Verdadeiro' : 'Falso'}
+                  </Typography>
+                )}
+              </Paper>
+
               )
           }
           </Box>
